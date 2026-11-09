@@ -1,0 +1,64 @@
+{
+  "_comment": "Config-driven per-app regex patterns. Loaded at runtime by ParserRegistry so formats can be updated without code changes. Amount group MUST be named 'amount'. Payee group SHOULD be named 'payee' when present.",
+  "apps": [
+    {
+      "packageName": "com.google.android.apps.nbu.paisa.user",
+      "label": "GPay",
+      "debitKeywords": ["paid", "sent", "debited", "payment successful", "money sent"],
+      "creditKeywords": ["received", "credited", "money received", "cashback"],
+      "amountPatterns": [
+        "(?:Rs\\.?|₹|INR)\\s?(?<amount>[0-9,]+(?:\\.[0-9]{1,2})?)",
+        "(?<amount>[0-9,]+(?:\\.[0-9]{1,2})?)\\s?(?:Rs\\.?|₹|INR)"
+      ],
+      "payeePatterns": [
+        "(?:Paid|Sent)\\s+(?:Rs\\.?|₹)?\\s?[0-9,.]+\\s+to\\s+(?<payee>[A-Za-z0-9 .&'_-]{2,60})",
+        "to\\s+(?<payee>[A-Za-z0-9 .&'_-]{2,60})\\s+(?:UPI|@)"
+      ]
+    },
+    {
+      "packageName": "com.phonepe.app",
+      "label": "PhonePe",
+      "debitKeywords": ["paid", "sent", "debited", "payment successful", "transaction successful"],
+      "creditKeywords": ["received", "credited", "refund"],
+      "amountPatterns": [
+        "(?:Rs\\.?|₹|INR)\\s?(?<amount>[0-9,]+(?:\\.[0-9]{1,2})?)",
+        "(?<amount>[0-9,]+(?:\\.[0-9]{1,2})?)\\s?(?:paid|sent|debited)"
+      ],
+      "payeePatterns": [
+        "(?:Paid|Sent)\\s+(?:Rs\\.?|₹)?\\s?[0-9,.]+\\s+to\\s+(?<payee>[A-Za-z0-9 .&'_-]{2,60})",
+        "to\\s+(?<payee>[A-Za-z0-9 .&'_-]{2,60})"
+      ]
+    },
+    {
+      "packageName": "net.one97.paytm",
+      "label": "Paytm",
+      "debitKeywords": ["paid", "sent", "debited", "payment successful", "money sent"],
+      "creditKeywords": ["received", "credited", "cashback", "refund"],
+      "amountPatterns": [
+        "(?:Rs\\.?|₹|INR)\\s?(?<amount>[0-9,]+(?:\\.[0-9]{1,2})?)"
+      ],
+      "payeePatterns": [
+        "(?:Paid|Sent)\\s+(?:Rs\\.?|₹)?\\s?[0-9,.]+\\s+to\\s+(?<payee>[A-Za-z0-9 .&'_-]{2,60})"
+      ]
+    },
+    {
+      "packageName": "com.fampay.app",
+      "label": "FamPay",
+      "debitKeywords": ["paid", "spent", "debited"],
+      "creditKeywords": ["received", "credited", "added"],
+      "amountPatterns": [
+        "(?:Rs\\.?|₹|INR)\\s?(?<amount>[0-9,]+(?:\\.[0-9]{1,2})?)"
+      ],
+      "payeePatterns": [
+        "(?:Paid|Spent)\\s+(?:Rs\\.?|₹)?\\s?[0-9,.]+\\s+(?:at|to|on)\\s+(?<payee>[A-Za-z0-9 .&'_-]{2,60})"
+      ]
+    }
+  ],
+  "genericAmountPatterns": [
+    "(?:Rs\\.?|₹|INR)\\s?(?<amount>[0-9,]+(?:\\.[0-9]{1,2})?)",
+    "(?<amount>[0-9,]+(?:\\.[0-9]{1,2})?)\\s?(?:Rs\\.?|₹|INR)"
+  ],
+  "genericDebitKeywords": ["paid", "sent", "debited", "spent", "payment successful", "transaction successful"],
+  "genericCreditKeywords": ["received", "credited", "refund", "cashback", "added to wallet"],
+  "dedupWindowSec": 8
+}

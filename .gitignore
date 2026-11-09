@@ -1,0 +1,14 @@
+# Android
+*.iml
+.gradle/
+/local.properties
+/.idea/
+/build/
+/app/build/
+captures/
+.externalNativeBuild/
+.cxx/
+*.apk
+*.aab
+local.properties
+# wrapper jar is intentionally kept (needed for build without gradle installed)

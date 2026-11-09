@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<full-backup-content>
+    <!-- Room DB is local-only by design (v1 offline). Allow system backup of DB + prefs. -->
+    <include domain="database" path="." />
+    <include domain="sharedpref" path="." />
+    <include domain="file" path="backups/" />
+</full-backup-content>
